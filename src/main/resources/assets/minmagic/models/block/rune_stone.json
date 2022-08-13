@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minmagic:blocks/rune_stone",
+    "up": "minmagic:blocks/rune_stone",
+    "north": "minmagic:blocks/rune_stone",
+    "east": "minmagic:blocks/rune_stone",
+    "south": "minmagic:blocks/rune_stone",
+    "west": "minmagic:blocks/rune_stone",
+    "particle": "minmagic:blocks/rune_stone"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "display": {
+    "background": "minmagic:textures/blocks/rune_stone.png",
+    "icon": {
+      "item": "minmagic:rune_stone"
+    },
+    "title": {
+      "translate": "advancements.advancement_magic.title"
+    },
+    "description": {
+      "translate": "advancements.advancement_magic.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "runestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minmagic:rune_stone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

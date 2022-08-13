@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minmagic:block_rune_stone",
+    "minmagic:block_rune_entropy",
+    "minmagic:block_rune_materialization",
+    "minmagic:block_killer_rune",
+    "minmagic:block_rune_envy_better_input",
+    "minmagic:block_rune_envy_better_output"
+  ]
+}

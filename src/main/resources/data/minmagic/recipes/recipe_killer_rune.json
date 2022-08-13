@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0",
+    "1",
+    "2"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:diamond_sword"
+    },
+    "1": {
+      "item": "minmagic:rune_stone"
+    },
+    "2": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "item": "minmagic:rune_killer",
+    "count": 1
+  }
+}

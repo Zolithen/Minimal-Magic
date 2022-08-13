@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:clay"
+    },
+    "3": {
+      "item": "minecraft:clay"
+    },
+    "4": {
+      "item": "minecraft:ender_eye"
+    },
+    "5": {
+      "item": "minecraft:clay"
+    },
+    "7": {
+      "item": "minecraft:clay"
+    }
+  },
+  "result": {
+    "item": "minmagic:pos_binder",
+    "count": 1
+  }
+}

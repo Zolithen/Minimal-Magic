@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000"
+  ],
+  "key": {
+    "0": {
+      "item": "minmagic:rune_envy_better"
+    }
+  },
+  "result": {
+    "item": "minmagic:rune_envy_betterm",
+    "count": 6
+  }
+}

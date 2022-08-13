@@ -1,0 +1,25 @@
+{
+  "itemGroup.minmagic": "Minimal Magic",
+  "item.minmagic.pos_binder": "Enlazador",
+  "item.minmagic.pos_binder.tooltip": "Click derecho para guardar posición, shift click derecho para enlazar runa a posición guardada.",
+
+  "block.minmagic.rune_stone": "Piedra rúnica",
+  "block.minmagic.rune_envy_output": "Runa telepática de envidia (salida)",
+  "block.minmagic.rune_envy_better": "Runa telepática de envidia (entrada)",
+  "block.minmagic.rune_envy_betterm": "Runa telepática de envidia mínima (entrada)",
+  "block.minmagic.rune_envy": "Runa de envidia",
+  "block.minmagic.rune_materialization": "Runa de materialización",
+  "block.minmagic.rune_killer": "Runa de matanza",
+  "block.minmagic.rune_entropy": "Runa de entropía",
+  "block.minmagic.rune_advanced_entropy": "Runa de entropía avanzada",
+
+  "advancements.advancement_magic.descr": "Consigue un poco de piedra rúnica.",
+  "advancements.advancement_magic.title": "¿Magia?",
+
+  "block.minmagic.rune_envy_better.tooltip": "Teletransporta objetos cercanos a la runa de salida enlazada.",
+  "block.minmagic.rune_envy_betterm.tooltip": "Teletransporta objetos justamente debajo a la runa de salida enlazada.",
+  "block.minmagic.rune_envy.tooltip": "Teletransporta objetos cercanos debajo del bloque.",
+  "block.minmagic.rune_materialization.tooltip": "Recoge bloques sueltos cercanos y los coloca en la posición enlazada.",
+  "block.minmagic.rune_killer.tooltip": "Mata a criaturas cercanas cuando tiene un objeto que pueda hacer daño.",
+  "block.minmagic.rune_entropy.tooltip": "Rompe bloques en la posición enlazada cuando se le da la herramienta correcta."
+}

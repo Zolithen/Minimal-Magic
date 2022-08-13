@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+[[mods]]
+modId="minmagic"
+version="1-ALPHA"
+displayName="Minimal Magic"
+logoFile="logo.png"
+authors="NyKi"
+description='''
+Adds simple machines to easily automate your world.
+'''
+
+[[dependencies.minmagic]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.minmagic]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
