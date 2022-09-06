@@ -15,10 +15,4 @@ public class BlockRuneEnvy extends BlockRunetBase {
     public String getRuneID() {
         return "envy";
     }
-
-    @Override
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("block.minmagic.rune_envy.tooltip"));
-    }
 }

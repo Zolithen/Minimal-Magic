@@ -12,6 +12,7 @@
   "block.minmagic.rune_killer": "Killer Rune",
   "block.minmagic.rune_entropy": "Entropy Rune",
   "block.minmagic.rune_advanced_entropy": "Block Rune Advanced Entropy",
+  "block.minmagic.rune_maintenance": "Maintenance Rune",
 
   "advancements.advancement_magic.descr": "Craft some rune stone",
   "advancements.advancement_magic.title": "Magic?",
@@ -21,5 +22,6 @@
   "block.minmagic.rune_envy.tooltip": "Teleports nearby items to the block underneath.",
   "block.minmagic.rune_materialization.tooltip": "Grabs nearby dropped blocks and places them in the bound position.",
   "block.minmagic.rune_killer.tooltip": "Kills nearby mobs when given an item that can kill.",
-  "block.minmagic.rune_entropy.tooltip": "Breaks the block that it is bound to when provided with the correct tool."
+  "block.minmagic.rune_entropy.tooltip": "Breaks the block that it is bound to when provided with the correct tool.",
+  "block.minmagic.rune_maintenance.tooltip": "When linked to a rune, will extract the tools inside the rune when they are at their breaking point."
 }

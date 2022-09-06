@@ -1,6 +1,12 @@
 package net.nki.minmagic.block.base.noncontainer;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -15,6 +21,7 @@ import net.nki.minmagic.init.MMagicBE;
 import net.nki.minmagic.init.MMagicBlocks;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BlockRunetBase extends BlockRuneBase implements EntityBlock {
@@ -39,6 +46,7 @@ public class BlockRunetBase extends BlockRuneBase implements EntityBlock {
         if (!world.isClientSide()) { // TODO : Add possibility to add code to client side.
             IRunetTile tile = (IRunetTile) be;
             tile.setTimer(tile.getTimer()+1);
+            tile.tickUpdate();
             if (tile.getTimer() > tile.getMaxTimer()) {
                 tile.setTimer(0);
 
@@ -53,5 +61,13 @@ public class BlockRunetBase extends BlockRuneBase implements EntityBlock {
         public BlockEntity create(BlockPos p_155268_, BlockState p_155269_) {
             return new TileRunetBase(p_155268_, p_155269_);
         }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+        super.appendHoverText(itemstack, world, list, flag);
+        TranslatableComponent t = new TranslatableComponent("block.minmagic.rune_" + getRuneID() +".tooltip");
+        t.withStyle(ChatFormatting.DARK_GRAY);
+        list.add(t);
     }
 }

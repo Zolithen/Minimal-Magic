@@ -1,5 +1,6 @@
 package net.nki.minmagic.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -29,12 +30,14 @@ public class ItemPositionBinder extends Item {
     @Override
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("item.minmagic.pos_binder.tooltip"));
+        TranslatableComponent t = new TranslatableComponent("item.minmagic.pos_binder.tooltip");
+        t.withStyle(ChatFormatting.DARK_GRAY);
+        list.add(t);
     }
 
+    // TODO : Make visual effects
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        InteractionResult retval = super.useOn(context);
         Level world = context.getLevel();
         if (!world.isClientSide()) {
             BlockPos clPos = context.getClickedPos();
@@ -60,6 +63,6 @@ public class ItemPositionBinder extends Item {
                 pl.displayClientMessage(new TextComponent(("Saved position " + clPos.getX() + "," + clPos.getY() + "," + clPos.getZ())), false);
             }
         }
-        return retval;
+        return InteractionResult.PASS;
     }
 }

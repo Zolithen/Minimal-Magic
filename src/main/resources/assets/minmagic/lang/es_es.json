@@ -12,6 +12,7 @@
   "block.minmagic.rune_killer": "Runa de matanza",
   "block.minmagic.rune_entropy": "Runa de entropía",
   "block.minmagic.rune_advanced_entropy": "Runa de entropía avanzada",
+  "block.minmagic.rune_maintenance": "Runa de mantenimiento",
 
   "advancements.advancement_magic.descr": "Consigue un poco de piedra rúnica.",
   "advancements.advancement_magic.title": "¿Magia?",
@@ -21,5 +22,6 @@
   "block.minmagic.rune_envy.tooltip": "Teletransporta objetos cercanos debajo del bloque.",
   "block.minmagic.rune_materialization.tooltip": "Recoge bloques sueltos cercanos y los coloca en la posición enlazada.",
   "block.minmagic.rune_killer.tooltip": "Mata a criaturas cercanas cuando tiene un objeto que pueda hacer daño.",
-  "block.minmagic.rune_entropy.tooltip": "Rompe bloques en la posición enlazada cuando se le da la herramienta correcta."
+  "block.minmagic.rune_entropy.tooltip": "Rompe bloques en la posición enlazada cuando se le da la herramienta correcta.",
+  "block.minmagic.rune_maintenance.tooltip": "Extrae las herramientas a punto de romperse de la runa enlazada."
 }

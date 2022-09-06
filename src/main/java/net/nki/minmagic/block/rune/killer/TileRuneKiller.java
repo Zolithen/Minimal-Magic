@@ -1,52 +1,28 @@
 package net.nki.minmagic.block.rune.killer;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.FakePlayerFactory;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.nki.minmagic.MMagic;
-import net.nki.minmagic.block.base.IRunetTile;
 import net.nki.minmagic.block.base.container.TileRunetContainerBase;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
-import net.nki.minmagic.block.rune.envy.TileRuneEnvy;
-import net.nki.minmagic.block.rune.materialization.TileRuneMaterialization;
 import net.nki.minmagic.init.MMagicBE;
 
-import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class TileRuneKiller extends TileRunetContainerBase {
 
@@ -58,24 +34,9 @@ public class TileRuneKiller extends TileRunetContainerBase {
             return new TileRuneKiller(p_155268_, p_155269_);
         }
     }
-    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+
     public TileRuneKiller(BlockPos p_155229_, BlockState p_155230_) {
-        super(MMagicBE.RUNES.get("killer").get(), p_155229_, p_155230_);
-    }
-
-    @Override
-    protected Component getDefaultName() {
-        return new TextComponent("rune_killer");
-    }
-
-    @Override
-    public Component getDisplayName() {
-        return new TextComponent("Killer Rune");
-    }
-
-    @Override
-    protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-        return null;
+        super(MMagicBE.RUNES.get("killer").get(), p_155229_, p_155230_, 1);
     }
 
     @Override
@@ -111,7 +72,6 @@ public class TileRuneKiller extends TileRunetContainerBase {
             }
         }
 
-        //if (it.getCount() > 0 ) {
         inv.insertItem(0, it, false);
     }
 }

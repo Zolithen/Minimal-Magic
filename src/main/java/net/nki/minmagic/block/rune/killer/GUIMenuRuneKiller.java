@@ -1,64 +1,40 @@
 package net.nki.minmagic.block.rune.killer;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.MenuConstructor;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.nki.minmagic.init.MMagicGUI;
-import org.apache.logging.log4j.core.jmx.Server;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
 
-public class GUIMenuRuneKiller extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
-    public final static HashMap<String, Object> guistate = new HashMap<>();
-    public final Level world;
-    public final Player entity;
-    public int x, y, z;
-    private IItemHandler internal;
-    private final Map<Integer, Slot> customSlots = new HashMap<>();
-    private boolean bound = false;
+public class GUIMenuRuneKiller extends AbstractContainerMenu {
+    private IItemHandler handler;
+    private final ContainerLevelAccess access;
 
-    public GUIMenuRuneKiller(int id, Inventory inv, FriendlyByteBuf extraData) {
-        super(MMagicGUI.Menu.RUNE_KILLER, id);
-        this.entity = inv.player;
-        this.world = inv.player.level;
-        this.internal = new ItemStackHandler(1);
-        BlockPos pos = null;
-        if (extraData != null) {
-            pos = extraData.readBlockPos();
-            this.x = pos.getX();
-            this.y = pos.getY();
-            this.z = pos.getZ();
-        }
-        if (pos != null) {
-            BlockEntity ent = inv.player != null ? inv.player.level.getBlockEntity(pos) : null;
-            if (ent != null) {
-                ent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
-                    this.internal = capability;
-                    this.bound = true;
-                });
-            }
-        }
-        this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 80, 35) {
-        }));
+    // Client constructor
+    public GUIMenuRuneKiller(int id, Inventory inv) {
+        this(id, inv, new ItemStackHandler(1), BlockPos.ZERO);
+    }
+
+    // Server constructor
+    public GUIMenuRuneKiller(int id, Inventory inv, IItemHandler cont, BlockPos pos) {
+        super(MMagicGUI.Menu.RUNE_KILLER.get(), id);
+
+        this.handler = cont;
+        this.access = ContainerLevelAccess.create(inv.player.level, pos);
+        this.addSlot(new SlotItemHandler(cont, 0, 80, 35));
         for (int si = 0; si < 3; ++si)
             for (int sj = 0; sj < 9; ++sj)
-                this.addSlot(new Slot(inv, sj + (si + 1) * 9, 0 + 8 + sj * 18, 0 + 84 + si * 18));
+                this.addSlot(new Slot(inv, sj + (si + 1) * 9, 8 + sj * 18, 84 + si * 18));
         for (int si = 0; si < 9; ++si)
-            this.addSlot(new Slot(inv, si, 0 + 8 + si * 18, 0 + 142));
+            this.addSlot(new Slot(inv, si, 8 + si * 18, 142));
     }
 
     @Override
@@ -66,10 +42,11 @@ public class GUIMenuRuneKiller extends AbstractContainerMenu implements Supplier
         return true;
     }
 
+    // Nightmares
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot) this.slots.get(index);
+        Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
@@ -179,24 +156,7 @@ public class GUIMenuRuneKiller extends AbstractContainerMenu implements Supplier
         return flag;
     }
 
-    @Override
-    public void removed(Player playerIn) {
-        super.removed(playerIn);
-        if (!bound && playerIn instanceof ServerPlayer) {
-            ServerPlayer serverPlayer = (ServerPlayer) playerIn;
-            if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-                for (int j = 0; j < internal.getSlots(); ++j) {
-                    playerIn.drop(internal.extractItem(j, internal.getStackInSlot(j).getCount(), false), false);
-                }
-            } else {
-                for (int i = 0; i < internal.getSlots(); ++i) {
-                    playerIn.getInventory().placeItemBackInInventory(internal.extractItem(i, internal.getStackInSlot(i).getCount(), false));
-                }
-            }
-        }
-    }
-
-    public Map<Integer, Slot> get() {
-        return customSlots;
+    public static MenuConstructor getServerContainer(TileRuneKiller be, BlockPos pos) {
+        return (id, playerInv, player) -> new GUIMenuRuneKiller(id, playerInv, be.inventory, pos);
     }
 }

@@ -43,4 +43,7 @@ public class TileRunetBase extends BlockEntity implements IRunetTile {
     public void setTimer(int t) {
         this.timer = t;
     }
+
+    @Override
+    public void tickUpdate() {}
 }

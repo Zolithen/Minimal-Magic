@@ -1,16 +1,9 @@
 package net.nki.minmagic.init;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,14 +11,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryObject;
 import net.nki.minmagic.MMagic;
-import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
-import net.nki.minmagic.block.rune.entropy.BlockRuneEntropy;
-import net.nki.minmagic.block.rune.envy.BlockRuneEnvy;
 import net.nki.minmagic.block.BlockRuneStone;
 import net.nki.minmagic.block.rune.envy.upgrade.BlockRuneEnvyBetterOutput;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

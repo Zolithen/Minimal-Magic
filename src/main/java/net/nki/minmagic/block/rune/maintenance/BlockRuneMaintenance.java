@@ -1,4 +1,4 @@
-package net.nki.minmagic.block.rune.envy.upgrade;
+package net.nki.minmagic.block.rune.maintenance;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -9,9 +9,9 @@ import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 
 import java.util.List;
 
-public class BlockRuneEnvyBetter extends BlockRunetBase {
+public class BlockRuneMaintenance extends BlockRunetBase {
     @Override
     public String getRuneID() {
-        return "envy_better";
+        return "maintenance";
     }
 }

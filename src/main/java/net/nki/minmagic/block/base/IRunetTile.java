@@ -9,5 +9,7 @@ public interface IRunetTile {
     public void runeAction();
     public void setTimer(int t);
 
+    public void tickUpdate();
+
     public class RuneSupplier extends BlockRunetBase.RuneEntitySupplier implements BlockEntityType.BlockEntitySupplier {};
 }
