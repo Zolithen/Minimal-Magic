@@ -11,11 +11,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.nki.minmagic.MMagic;
+import net.nki.minmagic.block.base.IRunetBindable;
 import net.nki.minmagic.block.base.container.TileRunetContainerBase;
+import net.nki.minmagic.block.base.container.TileRunetContainerBindable;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 import net.nki.minmagic.init.MMagicBE;
 
-public class TileRuneEntropy extends TileRunetContainerBase {
+public class TileRuneEntropy extends TileRunetContainerBindable  {
+
     public static class RuneSupplier extends BlockRunetBase.RuneEntitySupplier implements BlockEntityType.BlockEntitySupplier {
         @Override
         public BlockEntity create(BlockPos p_155268_, BlockState p_155269_) {
@@ -29,9 +32,9 @@ public class TileRuneEntropy extends TileRunetContainerBase {
 
     @Override
     public void runeAction() {
+        //MMagic.LOGGER.info("im running");
         Level world = this.getLevel();
-        CompoundTag tag = this.getTileData();
-        BlockPos boundPos = new BlockPos(tag.getInt("bindX"), tag.getInt("bindY"), tag.getInt("bindZ"));
+        BlockPos boundPos = this.getBind();
         BlockState bl = world.getBlockState(boundPos);
         IItemHandler itemHandler = this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).resolve().get();
         ItemStack it = itemHandler.getStackInSlot(0);

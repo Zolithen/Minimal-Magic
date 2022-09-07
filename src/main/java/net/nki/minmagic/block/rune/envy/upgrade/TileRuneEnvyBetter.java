@@ -10,12 +10,13 @@ import net.minecraft.world.phys.AABB;
 import net.nki.minmagic.block.base.IRunetTile;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 import net.nki.minmagic.block.base.noncontainer.TileRunetBase;
+import net.nki.minmagic.block.base.noncontainer.TileRunetBindable;
 import net.nki.minmagic.block.rune.envy.TileRuneEnvy;
 import net.nki.minmagic.init.MMagicBlocks;
 
 import java.util.List;
 
-public class TileRuneEnvyBetter extends TileRunetBase implements IRunetTile {
+public class TileRuneEnvyBetter extends TileRunetBindable implements IRunetTile {
 
     public static final int RANGE = 5;
 
@@ -54,9 +55,10 @@ public class TileRuneEnvyBetter extends TileRunetBase implements IRunetTile {
 
         if (!list.isEmpty()) {
             CompoundTag tag = this.getTileData();
-            int bx = tag.getInt("bindX");
-            int by = tag.getInt("bindY");
-            int bz = tag.getInt("bindZ");
+            BlockPos pos = this.getBind();
+            int bx = pos.getX();
+            int by = pos.getY();
+            int bz = pos.getZ();
 
             if (this.getLevel().getBlockState(new BlockPos(bx, by, bz)).getBlock().equals(MMagicBlocks.RUNE_ENVY_OUTPUT.get()) ) {
                 for (ItemEntity i : list) {
@@ -65,5 +67,15 @@ public class TileRuneEnvyBetter extends TileRunetBase implements IRunetTile {
             }
 
         }
+    }
+
+    @Override
+    public void load(CompoundTag compound) {
+        super.load(compound);
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
     }
 }

@@ -18,10 +18,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 import net.nki.minmagic.block.base.noncontainer.TileRunetBase;
+import net.nki.minmagic.block.base.noncontainer.TileRunetBindable;
 
 import java.util.List;
 
-public class TileRuneMaterialization extends TileRunetBase {
+public class TileRuneMaterialization extends TileRunetBindable {
 
     public final double RANGE = 5;
 
@@ -50,7 +51,7 @@ public class TileRuneMaterialization extends TileRunetBase {
             BlockPos p = this.getBlockPos();
             Level world = this.getLevel();
             CompoundTag tag = this.getTileData();
-            BlockState bl = world.getBlockState(new BlockPos(tag.getDouble("bindX"), tag.getDouble("bindY"), tag.getDouble("bindZ")));
+            BlockState bl = world.getBlockState(this.getBind());
             if (bl.getBlock() == Blocks.AIR) {
                 List<ItemEntity> list = world.getEntitiesOfClass(
                         ItemEntity.class,
@@ -60,12 +61,13 @@ public class TileRuneMaterialization extends TileRunetBase {
                             return true;
                 });
 
+                BlockPos pos = this.getBind();
+                double bx = pos.getX();
+                double by = pos.getY();
+                double bz = pos.getZ();
                 for (ItemEntity i : list) {
                     ItemStack it = i.getItem();
                     if (it.getItem() instanceof BlockItem) {
-                        double bx = tag.getDouble("bindX");
-                        double by = tag.getDouble("bindY");
-                        double bz = tag.getDouble("bindZ");
                         //world.setBlock(new BlockPos(myself.getTileData().getDouble("bindX"), myself.getTileData().getDouble("bindY"), myself.getTileData().getDouble("bindZ")));
                         Direction dir = Direction.UP;
                         BlockPlaceContext ctx = new BlockPlaceContext(world, null, InteractionHand.MAIN_HAND, it, new BlockHitResult(

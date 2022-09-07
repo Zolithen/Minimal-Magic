@@ -8,6 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.nki.minmagic.MMagic;
+import net.nki.minmagic.item.ItemMagicWrench;
 import net.nki.minmagic.item.ItemPositionBinder;
 
 public class MMagicItems {
@@ -15,6 +16,7 @@ public class MMagicItems {
 
     public static final RegistryObject<Item> POSITION_BINDER = REGISTRY.register("pos_binder",
             () -> new ItemPositionBinder());
+    public static final RegistryObject<Item> MAGIC_WRENCH = REGISTRY.register("magic_wrench", ItemMagicWrench::new);
 
     public static class MMagicTab extends CreativeModeTab {
 

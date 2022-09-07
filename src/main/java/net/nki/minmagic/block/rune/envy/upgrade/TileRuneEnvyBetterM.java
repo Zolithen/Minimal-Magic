@@ -10,11 +10,12 @@ import net.minecraft.world.phys.AABB;
 import net.nki.minmagic.block.base.IRunetTile;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 import net.nki.minmagic.block.base.noncontainer.TileRunetBase;
+import net.nki.minmagic.block.base.noncontainer.TileRunetBindable;
 import net.nki.minmagic.init.MMagicBlocks;
 
 import java.util.List;
 
-public class TileRuneEnvyBetterM extends TileRunetBase implements IRunetTile {
+public class TileRuneEnvyBetterM extends TileRunetBindable implements IRunetTile {
 
     public static final int RANGE = 5;
 
@@ -53,11 +54,15 @@ public class TileRuneEnvyBetterM extends TileRunetBase implements IRunetTile {
 
         if (!list.isEmpty()) {
             CompoundTag tag = this.getTileData();
-            int bx = tag.getInt("bindX");
+            /*int bx = tag.getInt("bindX");
             int by = tag.getInt("bindY");
-            int bz = tag.getInt("bindZ");
+            int bz = tag.getInt("bindZ");*/
+            BlockPos pos = this.getBind();
+            int bx = pos.getX();
+            int by = pos.getY();
+            int bz = pos.getZ();
 
-            if (this.getLevel().getBlockState(new BlockPos(bx, by, bz)).getBlock().equals(MMagicBlocks.RUNE_ENVY_OUTPUT.get()) ) {
+            if (this.getLevel().getBlockState(pos).getBlock().equals(MMagicBlocks.RUNE_ENVY_OUTPUT.get()) ) {
                 for (ItemEntity i : list) {
                     i.setPos(bx+0.5, by-1, bz+0.5);
                 }

@@ -23,9 +23,9 @@ import net.nki.minmagic.block.rune.entropy.TileRuneEntropy;
 public class TileRunetContainerBase extends BlockEntity implements IRunetTile {
     public int timer = 0;
 
-    public int bindX = 0;
+    /*public int bindX = 0;
     public int bindY = -1000;
-    public int bindZ = 0;
+    public int bindZ = 0;*/
 
     public boolean requiresUpdate;
 
@@ -49,9 +49,9 @@ public class TileRunetContainerBase extends BlockEntity implements IRunetTile {
         super.load(compound);
         this.inventory.deserializeNBT(compound.getCompound("inventory"));
 
-        this.bindX = compound.getInt("bindX");
+        /*this.bindX = compound.getInt("bindX");
         this.bindY = compound.getInt("bindY");
-        this.bindZ = compound.getInt("bindZ");
+        this.bindZ = compound.getInt("bindZ");*/
     }
 
     @Override
@@ -59,9 +59,9 @@ public class TileRunetContainerBase extends BlockEntity implements IRunetTile {
         super.saveAdditional(compound);
         compound.put("inventory", this.inventory.serializeNBT());
 
-        compound.putInt("bindX", this.bindX);
+        /*compound.putInt("bindX", this.bindX);
         compound.putInt("bindY", this.bindY);
-        compound.putInt("bindZ", this.bindZ);
+        compound.putInt("bindZ", this.bindZ);*/
     }
 
     @Override
@@ -81,6 +81,11 @@ public class TileRunetContainerBase extends BlockEntity implements IRunetTile {
     public void setTimer(int t) {
         this.timer = t;
     }
+
+    /*@Override
+    public BlockPos getBind() {
+        return new BlockPos(bindX, bindY, bindZ);
+    }*/
 
     @Override
     public void tickUpdate() {

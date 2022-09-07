@@ -25,11 +25,12 @@ import net.nki.minmagic.block.base.container.BlockRunetContainerBase;
 import net.nki.minmagic.block.base.container.TileRunetContainerBase;
 import net.nki.minmagic.block.base.noncontainer.BlockRunetBase;
 import net.nki.minmagic.block.base.noncontainer.TileRunetBase;
+import net.nki.minmagic.block.base.noncontainer.TileRunetBindable;
 import net.nki.minmagic.block.rune.materialization.TileRuneMaterialization;
 
 import java.util.List;
 
-public class TileRuneMaintenance extends TileRunetBase {
+public class TileRuneMaintenance extends TileRunetBindable {
     public static class RuneSupplier extends BlockRunetBase.RuneEntitySupplier implements BlockEntityType.BlockEntitySupplier {
         @Override
         public BlockEntity create(BlockPos p_155268_, BlockState p_155269_) {
@@ -54,7 +55,7 @@ public class TileRuneMaintenance extends TileRunetBase {
     public void runeAction() {
         CompoundTag tag = this.getTileData();
         Level world = this.getLevel();
-        BlockPos pos = new BlockPos(tag.getDouble("bindX"), tag.getDouble("bindY"), tag.getDouble("bindZ"));
+        BlockPos pos = this.getBind();
         BlockState bl = world.getBlockState(pos);
         ItemStack it = ItemStack.EMPTY;
         if ((bl.getBlock() instanceof BlockRunetBase) && (world.getBlockEntity(pos) instanceof TileRunetContainerBase)) {
@@ -64,7 +65,7 @@ public class TileRuneMaintenance extends TileRunetBase {
                 IItemHandler itemHandler = cap.resolve().get();
                 for (int i = 0; i < runet.getInvSize(); i++) {
                     it = itemHandler.getStackInSlot(i);
-                    if (it.getDamageValue() + 1 >= it.getMaxDamage()) {
+                    if ( it.isDamageableItem() && (it.getDamageValue() + 1 >= it.getMaxDamage()) ) {
                         world.addFreshEntity(new ItemEntity(world, this.worldPosition.getX(), this.worldPosition.getY() - 1, this.worldPosition.getZ(), itemHandler.extractItem(i, 1, false)));
                     }
                 }

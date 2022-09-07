@@ -31,8 +31,10 @@ public class MMagic
         MMagicBlocks.REGISTRY.register(modEventBus);
         MMagicItems.REGISTRY.register(modEventBus);
         MMagicBE.REGISTRY.register(modEventBus);
+        modEventBus.addListener(MMagicClient::init);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(this.DATA);
+        //MinecraftForge.EVENT_BUS.addListener(MMagicClientRender::init);
     }
 }

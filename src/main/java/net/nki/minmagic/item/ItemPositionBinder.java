@@ -14,6 +14,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.nki.minmagic.block.base.IRunetBindable;
 import net.nki.minmagic.init.MMagicItems;
 
 import java.util.List;
@@ -47,12 +48,13 @@ public class ItemPositionBinder extends Item {
             if (pl.isShiftKeyDown()) {
                 BlockEntity rune = world.getBlockEntity(clPos);
 
-                if (rune != null) {
+                if ((rune != null) && (rune instanceof IRunetBindable)) {
                     CompoundTag t = rune.getTileData();
                     CompoundTag itt = it.getOrCreateTag();
-                    t.putDouble("bindX", itt.getDouble("bx"));
+                    /*t.putDouble("bindX", itt.getDouble("bx"));
                     t.putDouble("bindY", itt.getDouble("by"));
-                    t.putDouble("bindZ", itt.getDouble("bz"));
+                    t.putDouble("bindZ", itt.getDouble("bz"));*/
+                    ((IRunetBindable) rune).setBind(new BlockPos(itt.getDouble("bx"), itt.getDouble("by"), itt.getDouble("bz")));
                     pl.displayClientMessage(new TextComponent(
                             ("Bound to " + itt.getDouble("bx") + "," + itt.getDouble("by") + "," + itt.getDouble("bz"))), false);
                 }
