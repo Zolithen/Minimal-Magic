@@ -3,7 +3,9 @@ package net.nki.minmagic;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.nki.minmagic.init.*;
 import org.slf4j.Logger;
@@ -35,6 +37,14 @@ public class MMagic
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(this.DATA);
+
+        MMagicPacket.init();
         //MinecraftForge.EVENT_BUS.addListener(MMagicClientRender::init);
     }
+
+    /*@SubscribeEvent
+    public static void commonSetup(FMLCommonSetupEvent event) {
+        MMagic.LOGGER.info("Registering packets");
+        event.enqueueWork(MMagicPacket::init);
+    }*/
 }

@@ -13,7 +13,7 @@ public class CustomRenderType extends RenderType {
         super(p_173178_, p_173179_, p_173180_, p_173181_, p_173182_, p_173183_, p_173184_, p_173185_);
     }
 
-    private static final LineStateShard THICK_LINES = new LineStateShard(OptionalDouble.of(3.0D));
+    private static final LineStateShard THICK_LINES = new LineStateShard(OptionalDouble.of(10.0D));
 
     /*public static final RenderType OVERLAY_LINES = RenderType.create("overlay_lines",
             DefaultVertexFormat.POSITION_COLOR, GL11.GL_LINES, 256,

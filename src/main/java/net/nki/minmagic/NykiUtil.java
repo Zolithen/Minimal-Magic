@@ -27,4 +27,14 @@ public class NykiUtil {
     public static void loadBind(IRunetBindable rune, CompoundTag tag) {
         rune.setBind(new BlockPos(tag.getInt("bindX"), tag.getInt("bindY"), tag.getInt("bindZ")));
     }
+
+    public static void savePosToTag(BlockPos pos, CompoundTag tag, String name) {
+        tag.putInt(name + "x", pos.getX());
+        tag.putInt(name + "y", pos.getY());
+        tag.putInt(name + "z", pos.getZ());
+    }
+
+    public static BlockPos loadPosFromTag(CompoundTag tag, String name) {
+        return new BlockPos(tag.getInt(name + "x"), tag.getInt(name + "y"), tag.getInt(name + "z"));
+    }
 }

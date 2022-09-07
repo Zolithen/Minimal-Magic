@@ -128,9 +128,6 @@ public class MMagicClient {
         Matrix4f matrix = ms.last().pose();
         // Actual drawing
 
-        Vec3 start = (new Vec3(1f, 0f, -3f));
-        Vec3 end = (new Vec3(1f, 3f, -3f));
-
         /*RenderHelper.renderLine(builder, matrix, start, end, RenderHelper.RED);
         RenderHelper.renderLine(builder, matrix, start, new Vec3(2f, 4f, -4f), RenderHelper.RED);*/
         MMagicClient.BINDING_RENDERER.renderBinding(builder, matrix);
